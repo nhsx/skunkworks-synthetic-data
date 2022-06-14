@@ -1,0 +1,62 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://kedro.readthedocs.io/en/stable/05_data/01_data_catalog.html
+
+# Synthetic Data Input files
+procPatients:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermidiate/proc_patients.csv
+
+table_one_11040:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/table_one_11040.csv
+
+table_one_imbalanced_81795:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/table_one_imbalanced_81795.csv
+
+table_one_imbalanced_217010:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/table_one_imbalanced_217010.csv
+
+custom_real_data:
+  type: pandas.CSVDataSet
+  # --Add path to file here--
+  filepath: data/07_model_output/table_synth_from_one.csv
+
+# Synthetic Data Output files
+synthetic_data_small_input:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/synthetic_data_small_input.csv
+
+synthetic_data_medium_input:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/synthetic_data_medium_input.csv
+
+synthetic_data_large_input:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/synthetic_data_large_input.csv
+
+support_input_data:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/support_input_data.csv
+
+support_synthetic_data:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/support_synthetic_data.csv
+
+custom_synthetic_data:
+  type: pandas.CSVDataSet
+  # --Add path to file here--
+  filepath: data/07_model_output/table_synth_from_one.csv
+
+# Data Evaluation files
+RealData:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/table_one_synthvae.csv
+
+SyntheticData:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/table_synth_from_one.csv
+

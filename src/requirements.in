@@ -1,0 +1,19 @@
+black==21.5b1
+flake8>=3.7.9, <4.0
+ipython~=7.10
+isort~=5.0
+jupyter~=1.0
+jupyter_client>=5.1, <7.0
+jupyterlab~=3.0
+kedro==0.17.6
+nbstripout~=0.4
+pandas==1.1.5
+sdv==0.11
+scikit-learn==0.24.2
+pytest-cov~=3.0
+pytest-mock>=1.7.1, <2.0
+pytest~=6.2
+wheel>=0.35, <0.37
+gower
+seaborn==0.11.2
+pandas_profiling
