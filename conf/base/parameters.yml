@@ -1,0 +1,51 @@
+all_features:
+    - SUBJECT_ID
+    - ETHNICITY
+    - ADMITTIME
+    - GENDER
+    - FIRST_CAREUNIT
+    - VALUE
+    - VALUEUOM
+    - LABEL
+    - age
+
+categorical_features:
+    - ETHNICITY
+    - GENDER
+    - FIRST_CAREUNIT
+    - VALUEUOM
+    - LABEL
+
+time_features:
+    - ADMITTIME
+
+all_support_features:
+    - x1
+    - x2
+    - x3
+    - x4
+    - x5
+    - x6
+    - x7
+    - x8
+    - x9
+    - x10
+    - x11
+    - x12
+    - x13
+    - x14
+    - duration
+    - event
+
+support_categorical_features:
+    - x1
+    - x2
+    - x3
+    - x4
+    - x5
+    - x6
+
+support_time_features:
+    - None
+
+synthetic_data_generation_size: 20000
