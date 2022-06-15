@@ -2,21 +2,25 @@
 
 # NHS AI Lab Skunkworks project: Synthetic Data Generation
 
-> A exploratory project for the NHS AI (Artificial Intelligence) Lab Skunkworks team, Synthetic Data Generation exploring practical application of synthetic data generation methods of datasets with mixed column types
+> A exploratory project for the NHS AI (Artificial Intelligence) Lab Skunkworks team, Synthetic Data Generation explores practical application of synthetic data generation methods of datasets with mixed column types
 
-Synthetic Data Generation was taken on to explore how synthetic data generation methods can be used in reality, looking at how they can be applied and how well they perform. The primary purpose of this project was to deliver a set of synthetic data sources and a pipeline for their generation and evaluation for use by the NHSX Analytics Unit.
+Synthetic Data Generation was taken on to explore how synthetic data generation methods can be used in reality, looking at how they can be applied and how well they perform. The primary purpose of this project was to deliver a set of synthetic data sources and a pipeline for their generation and evaluation for use by the NHSX Analytics Unit. The project ran from December 2021 to April 2022.
+
+![example_output](docs/example_report_output.png)
 
 ## Background
 
 There are many ways to generate synthetic data, as well as many metrics by which to judge the output. This project seeks to explore the options available, including SynthVAE, a model produced by NHSX through the PhD Internship program in the NHSX Analytics Unit. This project also explores the metrics available to assess synthetic data. Finally, the NHSX Analytics Unit had a business requirement for some synthetic datasets, including the methodology and architecture used to generate them, which this project also seeks to provide.
 
+An overview of the approaches and challenges with generating synthetic datas can be seen in [Synthetic Data in Health](https://nhsx.github.io/AnalyticsUnit/synthetic.html) written by NHS Transformation Directorate's Analytics Unit.
+
+This model builds on the SynthVAE model, built by NHS Transformation Directorate's Analytics Unit. The code is open-source and can be seen at the [original repository](https://github.com/nhsx/SynthVAE).
+
+This project utilises MIMIC-III data, a deidentified health-related data associated with over forty thousand patients who stayed in critical care units of the Beth Israel Deaconess Medical Center between 2001 and 2012. More information on the dataset is available at https://physionet.org/content/mimiciii/1.4/.
+
 ## Under development
 
 This project is currently under active development, with updates being merged directly into `main` from a branch where development takes place.
-
-When the project is completed the `develop` branch will be merged into the `main` branch as a release.
-
-![Synthetic Data Pipeline](synthetic-data-pipeline.png)
 
 ## Documentation:
 
@@ -42,7 +46,7 @@ When the project is completed the `develop` branch will be merged into the `main
 ### Installation
 
 1. Create a virtual environment using e.g. [venv](https://docs.python.org/3/library/venv.html)
-2. Install the required packages e.g. with venv call `pip install -r requirements.txt` while in the `skunkworks-synthetic-data` folder once the virtual environment is active
+2. Install the required packages e.g. with venv call `pip install -r src/requirements.txt` while in the `skunkworks-synthetic-data` folder once the virtual environment is active
 
 ### Running the pipelines
 
@@ -56,7 +60,11 @@ The pipeline you wish to use will depend on what you want to achieve using the p
 |`[size]_preproc_pipeline`| Generates a pre-processed version of the MIMIC-III input file (`[size]` can be replaced with either small (11040 rows), medium (81795 rows), or large (217010 rows)). This type of pipeline will not generate any synthetic data, it will just construct an input file. |
 | `[size]_synthetic_generation_pipeline` |  Trains a SynthVAE model on the corresponding MIMIC-III input file (again `[size]` can be replaced with any of small (11040 rows), medium (81795 rows), or large (217010 rows)). The corresponding `[size]_preproc_pipeline` should be run before hand so the input file exists. This pipeline takes the input file, trains a model, and generates synthetic data with the trained model. |
 | `[size]_data_evaluation_pipeline` | Runs a set of evaluation checks on the original and synthetic datasets. `[size]` can be replaced with any of small (11040 rows), medium (81795 rows), or large (217010 rows). For this to run, at least one of the `[size]_synthetic_generation_pipeline` will need to have been run so that a synthetic dataset is present to analyse. |
-| `[size]_end_to_end` | Ties together `[size]_preproc_pipeline`, `[size]_synthetic_generation_pipeline` and data_evaluation_pipeline in one run. This is what you should run if you want to see how the whole process works, and what the entire process outputs. |
+| `[size]_end_to_end` | Ties together `[size]_preproc_pipeline`, `[size]_synthetic_generation_pipeline` and `[size]_data_evaluation_pipeline` in one run. This is what you should run if you want to see how the whole process works, and what the entire process outputs. |
+| `support_demo_pipeline` | Runs an `end_to_end` pipeline using PyCox Support data. This demonstrates how the whole process works without needing to input your own data source |
+
+An example of the pipeline structure can be seen below:
+![Synthetic Data Pipeline](synthetic-data-pipeline.png)
 
 ### Running an example
 
@@ -65,6 +73,13 @@ If you do not or cannot obtain access to MIMIC-III data, this section is intende
 
 To run the Pycox SUPPORT example, once you have activated your virtual environment and installed the requirements, you call the following in command line or Powershell:
 `kedro run --pipeline support_demo_pipeline`
+
+
+
+Once this has run, the synthetic data will be saved in `data/07_model_output` and it will be named according to the size of input data used. Three reports will be saved in `data/08_reporting`:
+- `data_checks.html` - this contains all of the comparison metrics between the two data sets
+- `real_data_profile.html` - this contains the Pandas-Profiling report for the real input data
+- `synthetic_data_profile.html` - this contains the Pandas-Profiling report for the synthetic input data
 
 ### Visualising pipelines
 

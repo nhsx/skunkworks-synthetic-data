@@ -62,7 +62,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
     support_demo_pipeline = Pipeline(
         [support_generate_pipeline, support_data_evaluation_pipeline]
     )
-
+ 
     small_end_to_end = Pipeline(
         [
             load_data_pipeline,
