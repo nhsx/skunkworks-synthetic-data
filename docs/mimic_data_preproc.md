@@ -1,6 +1,6 @@
 # MIMIC-III Preprocessing
 
-This projec utilises data from the [MIMIC-III Clinical Database](https://physionet.org/content/mimiciii/1.4/), more information is available at the link.
+This project utilises data from the [MIMIC-III Clinical Database](https://physionet.org/content/mimiciii/1.4/), more information is available at the link.
 
 In order to produce a input dataset which is consistent with the requirements of this project, preprocessing was undertaken to:
 - Produce a dataset of suitable size
